@@ -1,27 +1,50 @@
+'use client';
+
 import Link from 'next/link';
 
-const channels = [
-  { id: '1', name: 'MRTV', url: 'https://example.com/stream1.m3u8', category: 'burmese' },
-  { id: '2', name: 'Mizzima', url: 'https://example.com/stream2.m3u8', category: 'burmese' },
-  { id: '3', name: 'Sky Sports', url: 'https://example.com/stream3.m3u8', category: 'sports' },
-  { id: '4', name: 'ESPN', url: 'https://example.com/stream4.m3u8', category: 'sports' },
-];
+export interface Channel {
+  id: string;
+  name: string;
+  category: string;
+  logo?: string;
+  url: string;
+}
 
-export default function ChannelList() {
+interface ChannelListProps {
+  channels: Channel[];
+  category?: string;
+}
+
+export default function ChannelList({ channels, category }: ChannelListProps) {
+  const filteredChannels = category
+    ? channels.filter(c => c.category === category)
+    : channels;
+
   return (
-    <div className="max-w-7xl mx-auto p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {channels.map((channel) => (
-          <Link
-            key={channel.id}
-            href={`/player/${channel.id}`}
-            className="block p-6 border border-white/20 hover:border-white/40 rounded-lg transition-colors"
-          >
-            <h2 className="text-xl font-bold text-white mb-2">{channel.name}</h2>
-            <span className="text-white/60 text-sm capitalize">{channel.category}</span>
-          </Link>
-        ))}
-      </div>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {filteredChannels.map((channel) => (
+        <Link
+          key={channel.id}
+          href={`/player/${channel.id}`}
+          className="group bg-white/5 border border-white/10 rounded-lg p-4 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer"
+        >
+          <div className="aspect-video bg-black/50 rounded-md mb-3 flex items-center justify-center">
+            {channel.logo ? (
+              <img
+                src={channel.logo}
+                alt={channel.name}
+                className="w-12 h-12 object-contain"
+              />
+            ) : (
+              <span className="text-white/30 text-2xl">📺</span>
+            )}
+          </div>
+          <h3 className="text-white text-sm font-medium group-hover:text-white/80 transition-colors line-clamp-1">
+            {channel.name}
+          </h3>
+          <p className="text-white/40 text-xs mt-1">{channel.category}</p>
+        </Link>
+      ))}
     </div>
   );
 }

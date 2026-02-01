@@ -1,19 +1,26 @@
 @tailwind base;
-@layer base {
-  * {
-    @apply bg-black text-white;
-  }
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
-  @apply min-h-screen font-sans;
+  background-color: #000;
+  color: #fff;
 }
 
-/* Minimal black & white theme */
-.channel-card:hover {
-  @apply border-2 border-white/20;
-}
-
-.player-container video {
-  @apply w-full h-full object-contain;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }

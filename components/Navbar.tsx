@@ -4,21 +4,18 @@ import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="border-b border-white/20 bg-black/90">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <Link href="/" className="text-white hover:text-white/80 font-semibold">
-            📺 IPTV Player
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-black border-b border-white/10">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="text-white text-xl font-semibold tracking-tight hover:opacity-70 transition-opacity">
+            IPTV
           </Link>
-          <div className="flex gap-4">
-            <Link href="/sports" className="text-white/70 hover:text-white">
-              Sports
+          <div className="flex gap-6">
+            <Link href="/#channels" className="text-sm text-white/70 hover:text-white transition-colors">
+              Channels
             </Link>
-            <Link href="/burmese" className="text-white/70 hover:text-white">
-              Burmese
-            </Link>
-            <Link href="/favorites" className="text-white/70 hover:text-white">
-              ⭐ Favorites
+            <Link href="/#categories" className="text-sm text-white/70 hover:text-white transition-colors">
+              Categories
             </Link>
           </div>
         </div>
