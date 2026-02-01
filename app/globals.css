@@ -1,0 +1,19 @@
+@tailwind base;
+@layer base {
+  * {
+    @apply bg-black text-white;
+  }
+}
+
+body {
+  @apply min-h-screen font-sans;
+}
+
+/* Minimal black & white theme */
+.channel-card:hover {
+  @apply border-2 border-white/20;
+}
+
+.player-container video {
+  @apply w-full h-full object-contain;
+}
